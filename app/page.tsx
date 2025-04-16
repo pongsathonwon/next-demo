@@ -30,13 +30,15 @@ export default function Home() {
     };
   }, []);
   return (
-    <div>
+    <div className="flex flex-col gap-4 p-4">
       {todo.map(({ id, userId, title, completed }, i) => (
-        <div key={id}>
+        <div
+          key={id}
+          className="flex justify-between p-4 border border-black rounded-sm"
+        >
           <h2>{title}</h2>
-          <div>
-            <div>status</div>
-            <div>{completed}</div>
+          <div className={completed ? "text-green-400" : "text-red-400"}>
+            {completed ? "complete" : "incomplete"}
           </div>
         </div>
       ))}
