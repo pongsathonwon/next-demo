@@ -7,6 +7,7 @@ import { TTodo } from "./todo.type";
 // todo fetch data from https://jsonplaceholder.typicode.com/todos
 export default function Home() {
   const [todo, setTodo] = useState<TTodo[]>([]);
+  const [search, setSearch] = useState<string>();
   const ctrl = new AbortController();
   useEffect(() => {
     const fetcher = async (signal: AbortSignal) => {
@@ -34,6 +35,8 @@ export default function Home() {
       <div className="p-4 flex flex-col gap-1">
         <label htmlFor="search">ค้นหา</label>
         <input
+          value={search}
+          onChange={(e) => setSearch(() => e.target.value)}
           type="text"
           name="search"
           id="search"
