@@ -1,7 +1,7 @@
 // apply use client directive for learning react
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { TTodo } from "./todo.type";
 
 // todo fetch data from https://jsonplaceholder.typicode.com/todos
@@ -29,5 +29,17 @@ export default function Home() {
       ctrl.abort();
     };
   }, []);
-  return <div>{JSON.stringify(todo)}</div>;
+  return (
+    <div>
+      {todo.map(({ id, userId, title, completed }, i) => (
+        <div key={id}>
+          <h2>{title}</h2>
+          <div>
+            <div>status</div>
+            <div>{completed}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
