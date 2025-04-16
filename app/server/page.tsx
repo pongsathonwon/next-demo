@@ -1,23 +1,11 @@
 import React, { Suspense } from "react";
-import { TPost } from "./post.type";
+import PostComponent from "./PostComponent";
 // fetch data using server component
-async function ServerPage() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const data = (res.ok ? await res.json() : []) as TPost[];
+function ServerPage() {
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <Suspense fallback={<div>loading ...</div>}>
-        {data.map(({ id, title, body }) => (
-          <div
-            key={id}
-            className="border border-black rounded-sm p-4 flex flex-col gap-2"
-          >
-            <h2 className="capitalize">{title}</h2>
-            <p>{body}</p>
-          </div>
-        ))}
-      </Suspense>
-    </div>
+    <Suspense fallback={<div>loading ...</div>}>
+      <PostComponent />
+    </Suspense>
   );
 }
 
