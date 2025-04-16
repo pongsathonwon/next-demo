@@ -7,7 +7,8 @@ import { TTodo } from "./todo.type";
 // todo fetch data from https://jsonplaceholder.typicode.com/todos
 export default function Home() {
   const [todo, setTodo] = useState<TTodo[]>([]);
-  const [search, setSearch] = useState<string>();
+  const [search, setSearch] = useState<string>("");
+  const todoWithFilter = todo.filter(({ title }) => title.includes(search));
   const ctrl = new AbortController();
   useEffect(() => {
     const fetcher = async (signal: AbortSignal) => {
@@ -45,7 +46,7 @@ export default function Home() {
         />
       </div>
       <div className="flex flex-col gap-4 p-4">
-        {todo.map(({ id, userId, title, completed }, i) => (
+        {todoWithFilter.map(({ id, userId, title, completed }, i) => (
           <div
             key={id}
             className="flex justify-between p-4 border border-black rounded-sm"
