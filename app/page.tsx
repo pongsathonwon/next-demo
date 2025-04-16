@@ -30,18 +30,30 @@ export default function Home() {
     };
   }, []);
   return (
-    <div className="flex flex-col gap-4 p-4">
-      {todo.map(({ id, userId, title, completed }, i) => (
-        <div
-          key={id}
-          className="flex justify-between p-4 border border-black rounded-sm"
-        >
-          <h2>{title}</h2>
-          <div className={completed ? "text-green-400" : "text-red-400"}>
-            {completed ? "complete" : "incomplete"}
+    <>
+      <div className="p-4 flex flex-col gap-1">
+        <label htmlFor="search">ค้นหา</label>
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="พิมค้นหา"
+          className="px-3 py-1"
+        />
+      </div>
+      <div className="flex flex-col gap-4 p-4">
+        {todo.map(({ id, userId, title, completed }, i) => (
+          <div
+            key={id}
+            className="flex justify-between p-4 border border-black rounded-sm"
+          >
+            <h2>{title}</h2>
+            <div className={completed ? "text-green-400" : "text-red-400"}>
+              {completed ? "complete" : "incomplete"}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
